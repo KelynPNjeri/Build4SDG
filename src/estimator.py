@@ -6,11 +6,13 @@ def estimator(data):
   
   output_data = {
     'data': data,
-    'impact': {
-      'currentlyInfected': reported_cases * 10
-    },
-    'severeImpact': {
-      'currentlyInfected': reported_cases * 50
-    }
+    'estimated': {
+      'impact': {
+        'currentlyInfected': reported_cases * 10
+      },
+      'severeImpact': {
+        'currentlyInfected': reported_cases * 50
+      }
+    } 
   }
   return output_data
