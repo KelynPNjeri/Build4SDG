@@ -1,7 +1,7 @@
 def estimator(data):
   reported_cases = 0
   for key, value in data.items():
-    if key is 'reportedCases':
+    if key == 'reportedCases':
         reported_cases = value
   
   output_data = {
