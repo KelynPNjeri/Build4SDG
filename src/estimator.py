@@ -21,7 +21,7 @@ def estimator(data):
       'hospitalBedsByRequestedTime': int((data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 10) * (2 ** factor))),
       'casesForICUByRequestedTime': int(.05 * ((data['reportedCases'] * 10) * (2 ** factor))),
       'casesForVentilatorsByRequestedTime': int(0.02 * ((data['reportedCases'] * 10) * (2 ** factor))),
-      'dollarsInFlight': int(((data['reportedCases'] * 10) * (2 ** factor) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / 30)
+      'dollarsInFlight': int((((data['reportedCases'] * 10) * (2 ** factor)) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / 30)
     },
     'severeImpact': {
       'currentlyInfected': data['reportedCases'] * 50,
@@ -30,7 +30,23 @@ def estimator(data):
       'hospitalBedsByRequestedTime': int((data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 50) * (2 ** factor))),
       'casesForICUByRequestedTime': int(.05 * ((data['reportedCases'] * 50) * (2 ** factor))),
       'casesForVentilatorsByRequestedTime': int(.02 * ((data['reportedCases'] * 50) * (2 ** factor))),
-      'dollarsInFlight': int(((data['reportedCases'] * 50) * (2 ** factor) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / 30)
+      'dollarsInFlight': int((((data['reportedCases'] * 50) * (2 ** factor)) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / 30)
     }
   } 
   return output_data
+
+# if __name__ == "__main__":
+#     data = {
+#       'region': {
+#         'name': "Africa",
+#         'avgAge': 19.7,
+#         'avgDailyIncomeInUSD': 5,
+#         'avgDailyIncomePopulation': 0.71
+#       },
+#       'periodType': "days",
+#       'timeToElapse': 58,
+#       'reportedCases': 674,
+#       'population': 66622705,
+#       'totalHospitalBeds': 1380614
+# }
+# print(estimator(data))
