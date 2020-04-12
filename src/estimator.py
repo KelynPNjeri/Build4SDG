@@ -12,12 +12,17 @@ def current_number_of_infections(period, period_type):
 
 def estimator(data):
   factor = current_number_of_infections(data['timeToElapse'], data['periodType']) 
+  raised_factor = (2 ** factor)
+  currently_infected = data['reportedCases'] * 10
+  infections_by_requested_time = (data['reportedCases'] * 10) * raised_factor
+  severe_cases_by_requested_time = .15 * (data['reportedCases'] * 10) * raised_factor
+
   output_data = {
     'data': data,
     'impact': {
-      'currentlyInfected': data['reportedCases'] * 10,
-      'infectionsByRequestedTime': (data['reportedCases'] * 10) * (2 ** factor),
-      'severeCasesByRequestedTime': .15 * (data['reportedCases'] * 50) * (2 ** factor),
+      'currentlyInfected': currently_infected,
+      'infectionsByRequestedTime': infections_by_requested_time,
+      'severeCasesByRequestedTime': severe_cases_by_requested_time,
       'hospitalBedsByRequestedTime': (data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 50) * (2 ** factor)),
       'casesForICUByRequestedTime': .05 * ((data['reportedCases'] * 10) * (2 ** factor)),
       'casesForVentilatorsByRequestedTime': 0.02 * ((data['reportedCases'] * 10) * (2 ** factor)),
