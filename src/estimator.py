@@ -1,17 +1,19 @@
 def current_number_of_infections(period, period_type):
   factor = 0
+  days = 0
   if period_type == 'months':
-    month_to_days = int(period) * 30
-    factor = month_to_days // 3
+    days = int(period) * 30
+    factor = days // 3
   elif period_type == 'weeks':
-    weeks_to_days = int(period) * 7
-    factor = weeks_to_days // 3
+    days = int(period) * 7
+    factor = days // 3
   else:
     factor = int(period) // 3
-  return factor
+    days = period
+  return factor, days
 
 def estimator(data):
-  factor = current_number_of_infections(data['timeToElapse'], data['periodType']) 
+  factor, days = current_number_of_infections(data['timeToElapse'], data['periodType']) 
   output_data = {
     'data': data,
     'impact': {
@@ -21,7 +23,7 @@ def estimator(data):
       'hospitalBedsByRequestedTime': int((data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 10) * (2 ** factor))),
       'casesForICUByRequestedTime': int(.05 * ((data['reportedCases'] * 10) * (2 ** factor))),
       'casesForVentilatorsByRequestedTime': int(0.02 * ((data['reportedCases'] * 10) * (2 ** factor))),
-      'dollarsInFlight': int((((data['reportedCases'] * 10) * (2 ** factor)) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) // 30)
+      'dollarsInFlight': int((((data['reportedCases'] * 10) * (2 ** factor)) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / days)
       # 'dollarsInFlight': int((((data['reportedCases'] * 10) * (2 ** factor)) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / 30)
     },
     'severeImpact': {
@@ -31,7 +33,7 @@ def estimator(data):
       'hospitalBedsByRequestedTime': int((data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 50) * (2 ** factor))),
       'casesForICUByRequestedTime': int(.05 * ((data['reportedCases'] * 50) * (2 ** factor))),
       'casesForVentilatorsByRequestedTime': int(.02 * ((data['reportedCases'] * 50) * (2 ** factor))),
-      'dollarsInFlight': int((((data['reportedCases'] * 50) * (2 ** factor)) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) // 30)
+      'dollarsInFlight': int((((data['reportedCases'] * 50) * (2 ** factor)) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / days)
       # 'dollarsInFlight': int((((data['reportedCases'] * 50) * (2 ** factor)) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / 30)
     }
   } 
