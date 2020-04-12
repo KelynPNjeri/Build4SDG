@@ -21,7 +21,7 @@ def estimator(data):
       'hospitalBedsByRequestedTime': int((data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 10) * (2 ** factor))),
       'casesForICUByRequestedTime': int(.05 * ((data['reportedCases'] * 10) * (2 ** factor))),
       'casesForVentilatorsByRequestedTime': int(0.02 * ((data['reportedCases'] * 10) * (2 ** factor))),
-      'dollarsInFlight': int(((data['reportedCases'] * 10) * (2 ** factor) * .65 * 1.5) / 30)
+      'dollarsInFlight': int(((data['reportedCases'] * 10) * (2 ** factor) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / 30)
     },
     'severeImpact': {
       'currentlyInfected': data['reportedCases'] * 50,
@@ -29,8 +29,8 @@ def estimator(data):
       'severeCasesByRequestedTime': int(.15 * (data['reportedCases'] * 50) * (2 ** factor)),
       'hospitalBedsByRequestedTime': int((data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 50) * (2 ** factor))),
       'casesForICUByRequestedTime': int(.05 * ((data['reportedCases'] * 50) * (2 ** factor))),
-      'casesForVentilatorsByRequestedTime': int(0.02 * ((data['reportedCases'] * 50) * (2 ** factor))),
-      'dollarsInFlight': int(((data['reportedCases'] * 50) * (2 ** factor) * .65 * 1.5) / 30)
+      'casesForVentilatorsByRequestedTime': int(.02 * ((data['reportedCases'] * 50) * (2 ** factor))),
+      'dollarsInFlight': int(((data['reportedCases'] * 50) * (2 ** factor) * data['region']['avgDailyIncomePopulation'] * data['region']['avgDailyIncomeInUSD']) / 30)
     }
   } 
   return output_data
