@@ -37,9 +37,26 @@ def estimator(data):
       'infectionsByRequestedTime': (data['reportedCases'] * 50) * (2 ** factor),
       'severeCasesByRequestedTime': .15 * (data['reportedCases'] * 50) * (2 ** factor),
       'hospitalBedsByRequestedTime': (data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 50) * (2 ** factor)),
-      'casesForICUByRequestedTime': .05 * ((data['reportedCases'] * 10) * (2 ** factor)),
-      'casesForVentilatorsByRequestedTime': 0.02 * ((data['reportedCases'] * 10) * (2 ** factor)),
-      'dollarsInFlight': int(((data['reportedCases'] * 10) * (2 ** factor) * .65 * 1.5) / 30)
+      'casesForICUByRequestedTime': .05 * ((data['reportedCases'] * 50) * (2 ** factor)),
+      'casesForVentilatorsByRequestedTime': 0.02 * ((data['reportedCases'] * 50) * (2 ** factor)),
+      'dollarsInFlight': int(((data['reportedCases'] * 50) * (2 ** factor) * .65 * 1.5) / 30)
     }
   } 
   return output_data
+
+
+if __name__ == "__main__":
+   data = {
+      'region': {
+        'name': "Africa",
+        'avgAge': 19.7,
+        'avgDailyIncomeInUSD': 5,
+        'avgDailyIncomePopulation': 0.71
+      },
+      'periodType': "days",
+      'timeToElapse': 58,
+      'reportedCases': 674,
+      'population': 66622705,
+      'totalHospitalBeds': 1380614
+}
+print(estimator(data))
