@@ -17,8 +17,8 @@ def estimator(data):
     'impact': {
       'currentlyInfected': data['reportedCases'] * 10,
       'infectionsByRequestedTime': (data['reportedCases'] * 10) * (2 ** factor),
-      'severeCasesByRequestedTime': .15 * (data['reportedCases'] * 10) * (2 ** factor),
-      'hospitalBedsByRequestedTime': (data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 10) * (2 ** factor)),
+      'severeCasesByRequestedTime': int(.15 * (data['reportedCases'] * 10) * (2 ** factor)),
+      'hospitalBedsByRequestedTime': int((data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 10) * (2 ** factor))),
       'casesForICUByRequestedTime': .05 * ((data['reportedCases'] * 10) * (2 ** factor)),
       'casesForVentilatorsByRequestedTime': 0.02 * ((data['reportedCases'] * 10) * (2 ** factor)),
       'dollarsInFlight': int(((data['reportedCases'] * 10) * (2 ** factor) * .65 * 1.5) / 30)
@@ -26,8 +26,8 @@ def estimator(data):
     'severeImpact': {
       'currentlyInfected': data['reportedCases'] * 50,
       'infectionsByRequestedTime': (data['reportedCases'] * 50) * (2 ** factor),
-      'severeCasesByRequestedTime': .15 * (data['reportedCases'] * 50) * (2 ** factor),
-      'hospitalBedsByRequestedTime': (data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 50) * (2 ** factor)),
+      'severeCasesByRequestedTime': int(.15 * (data['reportedCases'] * 50) * (2 ** factor)),
+      'hospitalBedsByRequestedTime': int((data['totalHospitalBeds'] * .35) - (.15 * (data['reportedCases'] * 50) * (2 ** factor))),
       'casesForICUByRequestedTime': .05 * ((data['reportedCases'] * 50) * (2 ** factor)),
       'casesForVentilatorsByRequestedTime': 0.02 * ((data['reportedCases'] * 50) * (2 ** factor)),
       'dollarsInFlight': int(((data['reportedCases'] * 50) * (2 ** factor) * .65 * 1.5) / 30)
