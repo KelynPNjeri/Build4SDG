@@ -1,0 +1,28 @@
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 947-507-926
+INFO:root:GET		/api/v1/on-covid-19/logs		200		64ms
+
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2020 15:24:47] "[1m[35mGET /api/v1/on-covid-19/logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 947-507-926
+INFO:root:GET		/api/v1/on-covid-19/		404		97ms
+
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2020 15:28:04] "[1m[35mGET /api/v1/on-covid-19/ HTTP/1.1[0m" 500 -
+INFO:root:GET		/api/v1/on-covid-19		200		00ms
+
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2020 15:28:09] "[1m[35mGET /api/v1/on-covid-19 HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 947-507-926
+INFO:root:GET		/api/v1/on-covid-19		200		00ms
+
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2020 15:30:28] "[1m[35mGET /api/v1/on-covid-19 HTTP/1.1[0m" 500 -
+INFO:root:GET		/api/v1/on-covid-19/json		200		00ms
+
+INFO:werkzeug:127.0.0.1 - - [13/Apr/2020 15:31:58] "[1m[35mGET /api/v1/on-covid-19/json HTTP/1.1[0m" 500 -

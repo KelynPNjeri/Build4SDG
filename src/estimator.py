@@ -54,3 +54,4 @@ def estimator(data):
 #       'totalHospitalBeds': 1380614
 # }
 # print(estimator(data))
+# print(timeit.timeit(estimator(data), number=1000))
