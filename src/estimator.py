@@ -14,6 +14,7 @@ def current_number_of_infections(period, period_type):
 
 def estimator(data):
   factor, days = current_number_of_infections(data['timeToElapse'], data['periodType']) 
+  
   output_data = {
     'data': data,
     'impact': {
@@ -53,5 +54,6 @@ def estimator(data):
 #       'population': 66622705,
 #       'totalHospitalBeds': 1380614
 # }
+# print(current_number_of_infections(data['timeToElapse'], data['periodType']))
 # print(estimator(data))
 # print(timeit.timeit(estimator(data), number=1000))
